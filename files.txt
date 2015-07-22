@@ -1,0 +1,1 @@
+/home/users/jiaomingjie/.jumbo/lib/python2.7/site-packages/tools-1.0-py2.7.egg

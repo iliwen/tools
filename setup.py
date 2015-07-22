@@ -6,9 +6,15 @@ setup(
       author="wen li",
       url="https://www.python.org/sigs/distutils-sig/",
       license="LGPL",
-      packages= find_packages(),
+      packages=find_packages("src"),
+      package_dir={'':'src'},
+
 
       include_package_data = True,
+      package_data ={
+          '': ['*.txt'],
+          'demo': ['data/*.dat'],
+          },
       exclude_package_data = {'':['README.*']}
 
       )

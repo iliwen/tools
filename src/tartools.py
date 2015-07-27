@@ -17,40 +17,32 @@ class tarTool(object):
         self.time = time.strftime('%Y%m%d-%H%M%S',time.localtime(time.time()))
 
     def tar_file(self):
-		tarFile = tarfile.TarFile(self.target_dir + self.filename.split(".")[0] + self.time + ".tar.gz", "w")
-		for root, cur_dir, files in os.walk(self.source):
-			for f in files:
-				fullpath = os.path.join(root, f)
-				tarFile.add(fullpath)
-		tarFile.close()
+        tarFile = tarfile.TarFile(self.target_dir + self.filename.split(".")[0] + self.time + ".tar.gz", "w")
+        for root, cur_dir, files in os.walk(self.source):
+        for f in files:
+            fullpath = os.path.join(root, f)
+	    tarFile.add(fullpath)
+	tarFile.close()
     
     def untar_file(self):
-		unTarFile = tarfile.open(self.source)
-        #unTarFile.extractall()
-		names = unTarFile.getnames()
-		for name in names:
-			unTarFile.extract(name, path=self.target_dir)
-		unTarFile.close()
+        unTarFile = tarfile.open(self.source)
+        names = unTarFile.getnames()
+        for name in names:
+                unTarFile.extract(name, path=self.target_dir)
+        unTarFile.close()
 
 if __name__ == '__main__':
     """
-    copy tools for three means of copying file.
+    tar/untar file.
     """
 
     #input argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--tar_file", help = "the source file that the coper is from.")
-    #parser.add_argument("-d", "--tar_dir", help = "the target file that the coper goes to.")
-    parser.add_argument("-u", "--untar_file", help = "copy source file fully to target file.")
-    parser.add_argument("-t", "--target_dir", help = "choose some lines to copy.")
-    #parser.add_argument("-k", "--keywords_copy", help = "choose the keys words part to copy.")
+    parser.add_argument("-f", "--tar_file", help = "tar file")
+    parser.add_argument("-u", "--untar_file", help = "untar file")
+    parser.add_argument("-t", "--target_dir", help = "target directory")
 
     args = parser.parse_args()
-    print args
-#    # judge source and target are whether existed.
-#    if not args.sourceFile or not args.targetDir:
-#        print "-s xx and -t xx should be not empty"
-#        sys.exit(1)
     
     # parse args and run.
     tt = tarTool(args)

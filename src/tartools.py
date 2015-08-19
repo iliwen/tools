@@ -19,9 +19,9 @@ class tarTool(object):
     def tar_file(self):
         tarFile = tarfile.TarFile(self.target_dir + self.filename.split(".")[0] + self.time + ".tar.gz", "w")
         for root, cur_dir, files in os.walk(self.source):
-        for f in files:
-            fullpath = os.path.join(root, f)
-	    tarFile.add(fullpath)
+            for f in files:
+                fullpath = os.path.join(root, f)
+                tarFile.add(fullpath)
 	tarFile.close()
     
     def untar_file(self):
